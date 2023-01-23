@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "markdownify.apps.MarkdownifyConfig",
     "mainapp",
+    "authapp",
 ]
 
 MIDDLEWARE = [
@@ -57,16 +58,17 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            "templates"
+            "templates",
         ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
+                "django.template.context_processors.media",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "mainapp.context_processors.example.simple_context_processor"
+                "mainapp.context_processors.example.simple_context_processor",
             ],
         },
     },
@@ -74,6 +76,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
+AUTH_USER_MODEL = "authapp.CustomUser"
+
+LOGIN_REDIRECT_URL = "mainapp:main_page"
+LOGOUT_REDIRECT_URL = "mainapp:main_page"
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
