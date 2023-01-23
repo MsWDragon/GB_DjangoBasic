@@ -136,3 +136,8 @@ STATICFILES_DIRS = [
 ALLOWED_HOSTS = ["*"]
 
 DEBUG = True
+
+# Media files
+MEDIA_URL = "/media/"
+
+MEDIA_ROOT = BASE_DIR / "media"
